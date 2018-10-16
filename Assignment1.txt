@@ -1,0 +1,119 @@
+1)
+import java.util.*;
+
+class Main {
+
+public static void check()
+{
+  System.out.println("Enter String: ");
+  
+    Scanner S=new Scanner(System.in);
+    String str=S.nextLine();
+    String temp=str;
+    int size=str.length();
+    
+    
+    String r="";
+
+    for(int i=size-1;i>=0;i--)
+    {
+      r=r+str.charAt(i);
+    }
+       
+      if(r!=str)
+      {
+       System.out.println("Palindrome");
+      }
+      else
+      {
+        System.out.println("Not a Palindrome");
+      }
+
+    System.out.println("Reversed String is:"+r);  
+}
+
+public static void main(String[] args)
+{
+  check();
+}
+} 
+-----------------------------------------------------------------
+2)
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    Scanner scan=new Scanner(System.in);
+    System.out.println("Enter a string");
+    String s=scan.nextLine();
+
+    char[] arr=s.toCharArray();
+    int size=arr.length;
+    
+    for(int i=0;i<=size-1;i++)
+    {
+      if(arr[i]>=97 && arr[i]<=122)
+      {
+        arr[i]-=32;
+      }
+      else
+      {
+        arr[i]+=32;
+      }
+    }
+
+    for(int i=0;i<size;i++)
+    {
+      System.out.print(arr[i]);
+    }
+  }
+}
+---------------------------------------------------------------------
+3)
+import java.util.*;
+class Main {
+  public static void main(String[] args) {
+    Scanner scan=new Scanner(System.in);
+    System.out.println("Enter a string");
+    String s=scan.nextLine();
+
+    char[] arr=s.toCharArray();
+    int size=arr.length;
+    int max=0;
+    
+
+    for(int i=0;i<size;i++)
+    {
+      int count=0;  
+      for(int j=0;j<size;j++)
+      {
+        if(arr[i]==arr[j])
+        {
+          count++;
+        }
+      }
+        max=count;
+    }
+    System.out.println(max);
+  }
+}
+-----------------------------------------------------------------------
+4)
+import java.util.*;
+
+class Subsequence 
+{
+    public static void SubString(String str, int n)
+    {
+       for (int i = 0; i < n; i++) 
+           for (int j = i+1; j <= n; j++)
+             System.out.println(str.substring(i, j));
+    }
+ 
+    public static void main(String[] args)
+    {
+		Scanner s=new Scanner(System.in);
+        String str = s.nextLine();
+        SubString(str, str.length());
+    }
+}
+   
