@@ -1,0 +1,796 @@
+1)
+import java.util.*;
+
+class Node
+{
+	int data;
+	Node left;
+	Node right;
+	Node root=null;
+
+	public Node()
+	{
+		data=0;
+	}
+
+	public Node(int data)
+	{
+		this.data=data;
+		this.left=null;
+		this.right=null;
+	}
+
+	public Node add(int data)
+	{
+		Node l=new Node(data);
+		Node temp=root;
+		
+		if(root==null)
+		{
+			root=l;
+		}
+		else
+		{
+		 Queue <Node> q = new LinkedList<>();
+		 q.add(root);
+		 	while(q.isEmpty()!=true)
+		 	{
+		 		temp=q.peek();
+		 		q.remove();
+		 		if(temp.left==null)
+		 		{
+		 			temp.left=l;
+		 			break;
+		 		}
+		 		else
+		 		{
+		 			q.add(temp.left);
+		 		}
+
+				if(temp.right==null)
+		 		{
+		 			temp.right=l;
+		 			break;
+		 		}
+		 		else
+		 		{
+		 			q.add(temp.right);
+		 		}		 		
+		 	}
+
+		}
+
+		return root;
+	}
+		public int sum(Node root) 
+ 		Queue<Node> queue = new ArrayDeque<>();
+ 		int sum = 0;
+ 		if (root != null) {
+	    queue.add(root);
+  		while (!queue.isEmpty()) {
+   		root = queue.remove();
+   		sum += root.data;
+   		Node lc = root.left;
+   		Node rc = root.right;
+   		if (lc != null) 
+   		{
+   			queue.add(lc);
+   		}
+
+  		if (rc != null) 
+  		{
+    		queue.add(rc);
+   		}
+  	}
+ }
+
+ return sum;
+}
+}
+class TreeMain1
+{
+	public static void main(String[] args)
+	{
+		Node b=new Node();
+
+		Node l=b.add(5);
+		l=b.add(3);
+		l=b.add(2);
+		l=b.add(4);
+		l=b.add(7);
+		l=b.add(6);
+		l=b.add(8);
+
+		b.inorder(l);
+
+		System.out.println(b.sum(l));
+	}
+}
+------------------------------------------------------------------------------------------------------
+2)
+import java.util.*;
+
+class Node
+{
+	int data;
+	Node left;
+	Node right;
+	Node root=null;
+
+	public Node()
+	{
+		data=0;
+	}
+
+	public Node(int data)
+	{
+		this.data=data;
+		this.left=null;
+		this.right=null;
+	}
+
+	public Node add(int data)
+	{
+		Node l=new Node(data);
+		Node temp=root;
+		
+		if(root==null)
+		{
+			root=l;
+		}
+		else
+		{
+		 Queue <Node> q = new LinkedList<>();
+		 q.add(root);
+		 	while(q.isEmpty()!=true)
+		 	{
+		 		temp=q.peek();
+		 		q.remove();
+		 		if(temp.left==null)
+		 		{
+		 			temp.left=l;
+		 			break;
+		 		}
+		 		else
+		 		{
+		 			q.add(temp.left);
+		 		}
+
+				if(temp.right==null)
+		 		{
+		 			temp.right=l;
+		 			break;
+		 		}
+		 		else
+		 		{
+		 			q.add(temp.right);
+		 		}		 		
+		 	}
+
+		}
+
+		return root;
+	}
+	public int count(Node node)
+	{
+		if(node == null)      
+			return 0;
+		if(node.left ==null && node.right==null)     
+			return 1;           
+		else
+			return count(node.left)+ count(node.right);     
+	}
+
+}
+
+class TreeMain1
+{
+	public static void main(String[] args)
+	{
+		Node b=new Node();
+
+		Node l=b.add(5);
+		l=b.add(3);
+		l=b.add(2);
+		l=b.add(4);
+		l=b.add(7);
+		l=b.add(6);
+		l=b.add(8);
+
+		b.inorder(l);
+
+		System.out.println(b.count(l));
+	}
+}
+--------------------------------------------------------------------------------------------------------------
+3)
+class Node { 
+  
+    int data; 
+    Node left, right; 
+  
+    Node(int d) 
+    { 
+        data = d; 
+        left = right = null; 
+    } 
+} 
+  
+class BinarySearchTree { 
+  
+    Node root; 
+  
+  
+    BinarySearchTree() 
+    { 
+        root = null; 
+    } 
+  
+   
+    public void add(int data) 
+    { 
+        this.root = this.insertRec(this.root, data); 
+    } 
+      
+    Node insertRec(Node node, int data) 
+    { 
+        if (node == null) { 
+            this.root = new Node(data); 
+            return this.root; 
+        } 
+
+        if (data < node.data) { 
+            node.left = this.insertRec(node.left, data); 
+        } else { 
+            node.right = this.insertRec(node.right, data); 
+        } 
+        return node; 
+    } 
+  
+    public class count { 
+        int c = 0; 
+    } 
+  
+    void secondLargestUtil(Node node, count C) 
+    {    
+        if (node == null || C.c >= 2) 
+            return;             
+      this.secondLargestUtil(node.right, C);  
+   
+        C.c++; 
+        if (C.c == 2) 
+		{ 
+            System.out.print("2nd largest element is "+node.data); 
+            return; 
+        } 
+        this.secondLargestUtil(node.left, C);  
+    } 
+   
+    void secondLargest(Node node) 
+    {     
+        count C = new count();  
+        this.secondLargestUtil(this.root, C); 
+    } 
+	
+    public static void main(String[] args) 
+    { 
+        BinarySearchTree tree = new BinarySearchTree(); 
+         
+        tree.add(50); 
+        tree.add(30); 
+        tree.add(20); 
+        tree.add(40); 
+        tree.add(70); 
+        tree.add(60); 
+        tree.add(80); 
+  
+        tree.secondLargest(tree.root); 
+    } 
+}
+------------------------------------------------------------------------------------------------------------------------------------ 
+4)
+import java.util.*;
+
+class Node
+{
+	int data;
+	Node left;
+	Node right;
+	Node root=null;
+
+	public Node()
+	{
+		data=0;
+	}
+
+	public Node(int data)
+	{
+		this.data=data;
+		this.left=null;
+		this.right=null;
+	}
+
+	public Node add(int data)
+	{
+		Node l=new Node(data);
+		Node temp=root;
+		
+		if(root==null)
+		{
+			root=l;
+		}
+		else
+		{
+		 Queue <Node> q = new LinkedList<>();
+		 q.add(root);
+		 	while(q.isEmpty()!=true)
+		 	{
+		 		temp=q.peek();
+		 		q.remove();
+		 		if(temp.left==null)
+		 		{
+		 			temp.left=l;
+		 			break;
+		 		}
+		 		else
+		 		{
+		 			q.add(temp.left);
+		 		}
+
+				if(temp.right==null)
+		 		{
+		 			temp.right=l;
+		 			break;
+		 		}
+		 		else
+		 		{
+		 			q.add(temp.right);
+		 		}		 		
+		 	}
+
+		}
+
+		return root;
+	}
+
+	public boolean isSameTree(Node p, Node q)
+{
+    if(p==null && q==null)
+    {
+        return true;
+    }
+    else if(p==null || q==null)
+    {   
+        return false;
+    }
+    else
+    {
+        return (p.data == q.data &&
+                isSameTree(p.left,q.left) &&
+                isSameTree(p.right,q.right));
+    }
+}
+
+
+}
+
+class TreeMain1
+{
+	public static void main(String[] args)
+	{
+		Node b=new Node();
+
+		Node l=b.add(5);
+		l=b.add(3);
+		l=b.add(2);
+		l=b.add(4);
+		l=b.add(7);
+		l=b.add(6);
+		l=b.add(8);
+
+		Node a=new Node();
+		Node m=a.add(5);
+		m=a.add(3);
+		m=a.add(2);
+		m=a.add(4);
+		m=a.add(7);
+		m=a.add(6);
+		m=a.add(8);
+
+		System.out.println(b.isSameTree(l,m));
+	}
+}
+--------------------------------------------------------------------------------------------------------------------------
+5)
+import java.util.*;
+
+class Node
+{
+	int data;
+	Node left;
+	Node right;
+	Node root=null;
+
+	public Node()
+	{
+		data=0;
+	}
+
+	public Node(int data)
+	{
+		this.data=data;
+		this.left=null;
+		this.right=null;
+	}
+
+	public Node add(int data)
+	{
+		Node l=new Node(data);
+		Node temp=root;
+		
+		if(root==null)
+		{
+			root=l;
+		}
+		else
+		{
+		 Queue <Node> q = new LinkedList<>();
+		 q.add(root);
+		 	while(q.isEmpty()!=true)
+		 	{
+		 		temp=q.peek();
+		 		q.remove();
+		 		if(temp.left==null)
+		 		{
+		 			temp.left=l;
+		 			break;
+		 		}
+		 		else
+		 		{
+		 			q.add(temp.left);
+		 		}
+
+				if(temp.right==null)
+		 		{
+		 			temp.right=l;
+		 			break;
+		 		}
+		 		else
+		 		{
+		 			q.add(temp.right);
+		 		}		 		
+		 	}
+
+		}
+
+		return root;
+	}
+
+
+	public void inorder(Node n)
+	{
+		if(n==null)
+		{return;}
+		inorder(n.left);
+		System.out.println(n.data);	
+		inorder(n.right);
+	}
+
+	void mirror()
+	{
+		root=mirror(root);
+	}
+  
+    Node mirror(Node node) 
+    { 
+        if (node == null) 
+            return node; 
+  
+        
+        Node left = mirror(node.left); 
+        Node right = mirror(node.right); 
+  
+        node.left = right; 
+        node.right = left; 
+  
+        return node; 
+    }
+}
+
+class TreeMain1
+{
+	public static void main(String[] args)
+	{
+		Node b=new Node();
+
+		Node l=b.add(5);
+		l=b.add(3);
+		l=b.add(2);
+		l=b.add(4);
+		l=b.add(7);
+		l=b.add(6);
+		l=b.add(8);
+
+		b.inorder(l);
+		
+		System.out.println();
+		b.mirror();
+		b.inorder(l);
+	}
+}
+------------------------------------------------------------------------------------------------------------------------------
+6)
+import java.util.*;
+class Node
+{
+	int data;
+	Node left=null;
+	Node right=null;
+	Node root=null;
+
+	public Node()
+	{
+		data=0;
+	}
+
+	public Node(int data)
+	{
+		this.data=data;
+		this.left=null;
+		this.right=null;
+	}
+
+	public Node add(int data)
+	{
+		Node n=new Node(data);
+		Node temp=root;
+// System.out.println(data);
+		if(root==null)
+		{
+			root=n;
+		}
+		else
+		{
+			//System.out.println(temp.data);
+			while(temp!=null)
+			{
+				if(temp.data>n.data)
+				{
+					if(temp.left==null)
+					{
+						temp.left=n;
+						break;
+					}
+					else
+					{
+						temp=temp.left;
+					}
+				}
+				else
+				{
+					if(temp.right==null)
+					{
+						temp.right=n;
+						break;
+					}
+					else
+					{
+						temp=temp.right;
+					}	
+				}
+			}	
+		}
+		return root;
+	}
+
+	public void inorder(Node n)
+	{
+		if(n==null)
+		{return;}
+		inorder(n.left);
+		System.out.println(n.data);
+		inorder(n.right);
+	}
+
+
+public boolean search(Node root, int val) 
+{
+	if (root != null) 
+	{
+		if (root.data == val) 
+		{
+			return true;
+		} 
+		else 
+		{
+			return search(root.left, val) || search(root.right, val);
+		}
+	}
+		return false;
+	}
+}
+class BST
+{
+	public static void main(String[] args)
+	{
+		Node b=new Node();
+
+		Node l=b.add(5);
+		l=b.add(3);
+		l=b.add(2);
+		l=b.add(4);
+		l=b.add(7);
+		l=b.add(6);
+		l=b.add(8);
+
+		b.inorder(l);
+
+		Scanner s=new Scanner(System.in);
+		int val=s.nextInt();
+		System.out.println(b.search(l,val));
+	}
+}
+-----------------------------------------------------------------------------------------------------------------------------
+7)
+import java.util.*;
+class Node
+{
+	int data;
+	Node left=null;
+	Node right=null;
+	Node root=null;
+
+	public Node()
+	{
+		data=0;
+	}
+
+	public Node(int data)
+	{
+		this.data=data;
+		this.left=null;
+		this.right=null;
+	}
+
+	public Node add(int data)
+	{
+		Node n=new Node(data);
+		Node temp=root;
+// System.out.println(data);
+		if(root==null)
+		{
+			root=n;
+		}
+		else
+		{
+			//System.out.println(temp.data);
+			while(temp!=null)
+			{
+				if(temp.data>n.data)
+				{
+					if(temp.left==null)
+					{
+						temp.left=n;
+						break;
+					}
+					else
+					{
+						temp=temp.left;
+					}
+				}
+				else
+				{
+					if(temp.right==null)
+					{
+						temp.right=n;
+						break;
+					}
+					else
+					{
+						temp=temp.right;
+					}	
+				}
+			}	
+		}
+		return root;
+	}
+
+	public void inorder(Node n)
+	{
+		if(n==null)
+		{return;}
+		inorder(n.left);
+		System.out.println(n.data);
+		inorder(n.right);
+	}
+
+
+public boolean search(Node root, int val) 
+{
+	if (root != null) 
+	{
+		if (root.data == val) 
+		{
+			return true;
+		} 
+		else 
+		{
+			return search(root.left, val) || search(root.right, val);
+		}
+	}
+	return false;
+}
+
+ArrayList<Integer> treeToList(Node node, ArrayList<Integer>list) 
+    {      
+        
+        if(node == null) 
+        return list; 
+          
+        treeToList(node.left, list); 
+        list.add(node.data); 
+        treeToList(node.right, list); 
+          
+        return list; 
+    } 
+
+    boolean isPairPresent(Node node, int target) 
+    {     
+        ArrayList<Integer>a1 = new ArrayList<>();  
+          
+        ArrayList<Integer> a2 = treeToList(node, a1);  
+          
+        int start = 0;  
+          
+        int end = a2.size() - 1;  
+  
+        while(start < end) 
+        { 
+          
+        if(a2.get(start) + a2.get(end) == target) 
+        { 
+            System.out.println("Pair Found: "+a2.get(start)+" + "+a2.get(end)+" " + "= "+ target); 
+            return true; 
+        } 
+          
+        if(a2.get(start) + a2.get(end)>target)
+        { 
+            end--; 
+        } 
+          
+        if(a2.get(start) + a2.get(end)<target) 
+        { 
+            start++; 
+        } 
+    } 
+  
+        System.out.println("No such values are found!"); 
+        return false; 
+    } 
+     
+
+
+}
+class BST
+{
+	public static void main(String[] args)
+	{
+		Node b=new Node();
+
+		Node l=b.add(5);
+		l=b.add(3);
+		l=b.add(2);
+		l=b.add(4);
+		l=b.add(7);
+		l=b.add(6);
+		l=b.add(8);
+
+		b.inorder(l);
+
+		// Scanner s=new Scanner(System.in);
+		// int val=s.nextInt();
+		// System.out.println(b.search(l,val));
+
+		System.out.println(b.isPairPresent(l,10));
+	}
+}
